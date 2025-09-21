@@ -1,108 +1,70 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
-
+<html lang="en" class="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Schulprojekt</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <style>
-    :root,
-    [data-bs-theme="light"] {
-      --bs-body-bg: #f8f9fa;
-      --bs-body-color: #212529;
-    }
-
-    [data-bs-theme="dark"] {
-      --bs-body-bg: #1c1c1e;
-      --bs-body-color: #f8f9fa;
-    }
-
-    body {
-      transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-    }
-
-    .header {
-      padding: 2rem 0;
-      text-align: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    [data-bs-theme="light"] .header {
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-
-    }
-
-
-    .theme-toggler {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      font-size: 1.5rem;
-      cursor: pointer;
-      background: none;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 50%;
-    }
-
-
-    .main-content {
-      padding: 3rem 0;
-    }
-
-    .main-content p {
-      line-height: 1.8;
-      font-size: 1.1rem;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schulprojekt</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'dark-bg': '#1c1c1e',
+                        'dark-text': '#f5f5f7',
+                        'light-bg': '#ffffff',
+                        'light-text': '#1d1d1f',
+                        'apple-blue': '#007aff',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
 </head>
+<body class="bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text font-sans transition-colors duration-500">
+    <header class="border-b border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <h1 class="text-xl font-semibold">Schulprojekt</h1>
+                <button id="theme-toggler" class="text-2xl">
+                    ☀️
+                </button>
+            </div>
+        </div>
+    </header>
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+        <div class="max-w-3xl mx-auto">
+            <div class="space-y-8">
+                <p class="text-lg leading-relaxed">"Why didn't they listen? We tried to warn them."</p>
+                <p class="text-lg leading-relaxed">"I never thought I'd see a resonance cascade, let alone create one."</p>
+                <p class="text-lg leading-relaxed">"The administrator is very concerned that we get a conclusive analysis of today's sample. I gather they went to some length to get it."</p>
+                <p class="text-lg leading-relaxed">"Do you think we should appeal to the alien authorities?"</p>
+                <p class="text-lg leading-relaxed">"Don't shoot! I'm with the science team!"</p>
+                <p class="text-lg leading-relaxed">"For God's sake, open the silo door! They're coming for us; it's our only way out!"</p>
+                <p class="text-lg leading-relaxed">"With my brains and your brawn we'll make an excellent team."</p>
+            </div>
+        </div>
+    </main>
 
-<body>
+    <script>
+        const themeToggler = document.getElementById('theme-toggler');
+        const htmlElement = document.documentElement;
 
-  <header class="header">
-    <div class="container">
-      <h1 class="display-4">Schulprojekt</h1>
-      <button class="theme-toggler" id="theme-toggler">☀️</button>
-    </div>
-  </header>
-
-  <main class="main-content">
-    <div class="container">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum.
-      </p>
-      <p>
-        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
-        aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo
-        enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos
-        qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
-        consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam
-        quaerat voluptatem.
-      </p>
-    </div>
-  </main>
-
-
-  <script>
-    const themeToggler = document.getElementById('theme-toggler');
-    const htmlElement = document.documentElement;
-
-    themeToggler.addEventListener('click', () => {
-      if (htmlElement.getAttribute('data-bs-theme') === 'dark') {
-        htmlElement.setAttribute('data-bs-theme', 'light');
-        themeToggler.textContent = '🌙';
-      } else {
-        htmlElement.setAttribute('data-bs-theme', 'dark');
-        themeToggler.textContent = '☀️';
-      }
-    });
-  </script>
+        themeToggler.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            if (htmlElement.classList.contains('dark')) {
+                themeToggler.textContent = '☀️';
+            } else {
+                themeToggler.textContent = '🌙';
+            }
+        });
+    </script>
 </body>
-
 </html>
