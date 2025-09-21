@@ -4,51 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Schulprojekt</title>
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom Styles & Tailwind Config -->
+    <style>
+        /* Apply the custom font */
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Smooth theme transition */
+        .theme-transition {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+    </style>
+
     <script>
+        // Tailwind configuration
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
                     colors: {
-                        'dark-bg': '#1c1c1e',
-                        'dark-text': '#f5f5f7',
+                        'dark-bg': '#1d1d1f',    // Apple's dark background
+                        'dark-text': '#f5f5f7',   // Apple's light text
                         'light-bg': '#ffffff',
                         'light-text': '#1d1d1f',
                         'apple-blue': '#007aff',
+                        'dark-border': 'rgba(245, 245, 247, 0.2)', // Subtle border for dark mode
+                        'light-border': 'rgba(29, 29, 31, 0.1)'   // Subtle border for light mode
                     }
                 }
             }
         }
     </script>
-    <style>
-        body {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-    </style>
 </head>
-<body class="bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text font-sans transition-colors duration-500">
-    <header class="border-b border-gray-200 dark:border-gray-800">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<body class="bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text theme-transition">
+
+    <!-- Header -->
+    <header class="sticky top-0 bg-light-bg/80 dark:bg-dark-bg/80 backdrop-blur-md border-b border-light-border dark:border-dark-border theme-transition">
+        <div class="container mx-auto px-6 sm:px-8 lg:px-12">
             <div class="flex items-center justify-between h-16">
-                <h1 class="text-xl font-semibold">Schulprojekt</h1>
-                <button id="theme-toggler" class="text-2xl">
-                    ☀️
-                </button>
+                <h1 class="text-xl font-semibold tracking-tight">Schulprojekt</h1>
+                <button id="theme-toggler" class="text-2xl opacity-80 hover:opacity-100 transition-opacity">☀️</button>
             </div>
         </div>
     </header>
-    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
-        <div class="max-w-3xl mx-auto">
-            <div class="space-y-8">
-                <p class="text-lg leading-relaxed">"Why didn't they listen? We tried to warn them."</p>
-                <p class="text-lg leading-relaxed">"I never thought I'd see a resonance cascade, let alone create one."</p>
-                <p class="text-lg leading-relaxed">"The administrator is very concerned that we get a conclusive analysis of today's sample. I gather they went to some length to get it."</p>
-                <p class="text-lg leading-relaxed">"Do you think we should appeal to the alien authorities?"</p>
-                <p class="text-lg leading-relaxed">"Don't shoot! I'm with the science team!"</p>
-                <p class="text-lg leading-relaxed">"For God's sake, open the silo door! They're coming for us; it's our only way out!"</p>
-                <p class="text-lg leading-relaxed">"With my brains and your brawn we'll make an excellent team."</p>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 sm:px-8 lg:px-12 py-16 sm:py-24 lg:py-32">
+        <div class="max-w-4xl mx-auto">
+            <div class="space-y-10">
+                <!-- Added a title for context -->
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-center mb-12 sm:mb-16">Anomalous Materials Lab Log</h2>
+
+                <!-- Scientist Quotes -->
+                <p class="text-lg sm:text-xl lg:text-2xl leading-relaxed text-center opacity-90">"Why didn't they listen? We tried to warn them."</p>
+                <p class="text-lg sm:text-xl lg:text-2xl leading-relaxed text-center opacity-90">"I never thought I'd see a resonance cascade, let alone create one."</p>
+                <p class="text-lg sm:text-xl lg:text-2xl leading-relaxed text-center opacity-90">"Don't shoot! I'm with the science team!"</p>
+                <p class="text-lg sm:text-xl lg:text-2xl leading-relaxed text-center opacity-90">"For God's sake, open the silo door! It's our only way out!"</p>
+                <p class="text-lg sm:text-xl lg:text-2xl leading-relaxed text-center opacity-90">"With my brains and your brawn, we'll make an excellent team."</p>
             </div>
         </div>
     </main>
@@ -56,6 +83,13 @@
     <script>
         const themeToggler = document.getElementById('theme-toggler');
         const htmlElement = document.documentElement;
+
+        // Set initial icon based on system preference or saved theme
+        if (htmlElement.classList.contains('dark')) {
+             themeToggler.textContent = '☀️';
+        } else {
+             themeToggler.textContent = '🌙';
+        }
 
         themeToggler.addEventListener('click', () => {
             htmlElement.classList.toggle('dark');
